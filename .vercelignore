@@ -1,0 +1,4 @@
+# Only the static site is hosted on Vercel. Keep the engine out of the deploy
+# so Vercel treats this as a pure static site (no build step).
+backend
+admin
