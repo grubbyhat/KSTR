@@ -1,0 +1,33 @@
+{
+  "_comment": "Live config for the KSTR dashboard backend. Editable from the Electron admin app.",
+
+  "kstrMint": "",
+  "kstrName": "KSTR",
+  "kstrSymbol": "KSTR",
+
+  "kinsMint": "Tqj8yFmagrg7oorpQkVGYR52r96RFTamvWfth9bpump",
+  "solMint": "So11111111111111111111111111111111111111112",
+  "goldTokenMint": "JCWS5oy3PKRKxK5FTKd9ELa3AZ2PAjJzkaWcUD61pump",
+
+  "claimIntervalMs": 30000,
+  "minClaimSol": 0.005,
+  "reserveSol": 0.02,
+  "priorityFeeSol": 0.005,
+  "buySlippageBps": 200,
+
+  "feeSplit": {
+    "kstrBuybackPct": 25,
+    "kinsBuyPct": 75
+  },
+  "burnKstrBuyback": false,
+
+  "goldPriceUrl": "https://kintaragold.xyz/",
+  "goldPricePollMs": 30000,
+  "dexPollMs": 20000,
+
+  "httpPort": 8790,
+  "wsPort": 8791,
+
+  "autoStart": false,
+  "live": false
+}

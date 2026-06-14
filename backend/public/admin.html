@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KSTR · Admin</title>
+  <link rel="icon" href="logo.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <img class="logo" src="logo.png" alt="KSTR" />
+      <div class="brand">KSTR · ADMIN<small>CONTROL PANEL</small></div>
+      <div class="spacer"></div>
+      <div class="badge" id="liveBadge">○ SIM</div>
+      <div class="badge"><span class="dot" id="connDot"></span><span id="connText">connecting…</span></div>
+      <div class="badge">👛 <span id="walletAddr">—</span></div>
+    </div>
+
+    <!-- controls -->
+    <h2 class="section">Engine</h2>
+    <div class="card span-12">
+      <div class="controls">
+        <button class="btn danger" id="liveToggle">TOGGLE LIVE</button>
+        <button class="btn" id="startBtn">START LOOP</button>
+        <button class="btn gray" id="stopBtn">STOP LOOP</button>
+        <button class="btn gray" id="cycleBtn">RUN CYCLE NOW</button>
+        <button class="btn gray" id="checkBtn">CHECK FEES</button>
+        <button class="btn gray" id="claimBtn">CLAIM NOW</button>
+        <button class="btn gray" id="streamBtn">OPEN STREAM VIEW ↗</button>
+      </div>
+      <p class="sub" style="margin-top:14px">
+        Status: <b id="runState">IDLE</b> · Pending fees: <b id="pendingFees">—</b> · Wallet SOL: <b id="walletSol">—</b>
+      </p>
+    </div>
+
+    <h2 class="section">Configuration</h2>
+    <div class="card span-12">
+      <div class="controls">
+        <label class="field">KSTR mint<input id="cfg_kstrMint" placeholder="paste at launch" /></label>
+        <label class="field">KINS mint<input id="cfg_kinsMint" /></label>
+        <label class="field">Claim interval (ms)<input id="cfg_claimIntervalMs" type="number" /></label>
+        <label class="field">Min claim (SOL)<input id="cfg_minClaimSol" type="number" step="0.001" /></label>
+        <label class="field">Reserve (SOL)<input id="cfg_reserveSol" type="number" step="0.001" /></label>
+        <label class="field">Slippage (bps)<input id="cfg_buySlippageBps" type="number" /></label>
+        <label class="field">Priority fee (SOL)<input id="cfg_priorityFeeSol" type="number" step="0.001" /></label>
+        <label class="field">KINS buy %<input id="cfg_kinsBuyPct" type="number" /></label>
+        <label class="field">KSTR buyback %<input id="cfg_kstrBuybackPct" type="number" /></label>
+        <label class="field" style="flex-direction:row;align-items:center;gap:8px">
+          <input id="cfg_burnKstr" type="checkbox" style="min-width:auto" /> Burn KSTR buyback
+        </label>
+      </div>
+      <div class="controls" style="margin-top:14px">
+        <button class="btn" id="saveCfg">SAVE CONFIG</button>
+      </div>
+    </div>
+
+    <h2 class="section">Manual buy</h2>
+    <div class="card span-12">
+      <div class="controls">
+        <label class="field">Token
+          <select id="buyToken" style="font-family:var(--sans);padding:9px;border-radius:10px">
+            <option value="KINS">KINS</option>
+            <option value="KSTR">KSTR</option>
+          </select>
+        </label>
+        <label class="field">SOL amount<input id="buySol" type="number" step="0.001" value="0.01" /></label>
+        <button class="btn" id="buyBtn">BUY (live only)</button>
+      </div>
+    </div>
+
+    <!-- live tiles (same IDs as dashboard) -->
+    <h2 class="section">Live</h2>
+    <div class="grid">
+      <div class="card"><div class="label">💰 Fees Claimed</div><div class="value"><span id="feesSol">0.000</span><span class="unit">SOL</span></div><div class="sub" id="feesUsd">$0.00</div></div>
+      <div class="card"><div class="label">🟠 KINS Bought</div><div class="value coin"><span id="kinsAmt">0</span></div><div class="sub" id="kinsUsd">$0.00</div></div>
+      <div class="card"><div class="label">📈 KSTR Marketcap</div><div class="value"><span id="kstrMcap">$0</span></div><div class="sub"><span id="kstrPrice">—</span></div></div>
+      <div class="card"><div class="label">🪙 Gold Acquired</div><div class="value coin"><span id="goldEq">0.00</span></div><div class="sub" id="goldEqUsd">$0.00</div></div>
+      <div class="card span-8"><div class="label">🪙 Gold Spot <span id="goldUpdated"></span></div><div class="value sm">$<span id="goldSpot">0.000</span></div><canvas id="goldChart"></canvas></div>
+      <div class="card span-4">
+        <div class="label">⚙️ Fee Allocation</div>
+        <div class="splitbar"><div class="kins" id="splitKins" style="width:75%"></div><div class="kstr" id="splitKstr" style="width:25%"></div></div>
+        <div class="split-legend"><span><span class="swatch" style="background:var(--orange)"></span>KINS <span id="splitKinsPct">75%</span></span><span><span class="swatch" style="background:var(--gold)"></span>KSTR <span id="splitKstrPct">25%</span></span></div>
+        <div class="sub" style="margin-top:14px">KSTR bought back: <b id="kstrBought">0</b><br /><span id="kstrSpent">0.00 SOL</span></div>
+        <div class="sub">Cycles: <b id="cycles">0</b> · KINS mc <b id="kinsMcap">$0</b></div>
+        <div class="sub" style="display:none"><span id="kinsPrice"></span><span id="solPrice"></span></div>
+      </div>
+      <div class="card span-12"><div class="label">🛰️ Live Activity</div><div class="log" id="log"></div></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    let cfgLoaded = false;
+    KSTR.init((state, config) => {
+      // status line
+      const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+      set('pendingFees', (state.fees && state.fees.pendingSol != null) ? state.fees.pendingSol.toFixed(4) + ' SOL' : '—');
+      set('walletSol', (state.balances && state.balances.sol != null) ? state.balances.sol.toFixed(4) + ' SOL' : '—');
+      const lt = document.getElementById('liveToggle');
+      lt.textContent = state.live ? 'GO SIM (live ON)' : 'GO LIVE (sim)';
+      lt.className = 'btn ' + (state.live ? 'danger' : '');
+
+      // prefill config form once
+      if (!cfgLoaded && config) {
+        cfgLoaded = true;
+        const v = (id, val) => { const el = document.getElementById(id); if (el != null && val != null) el.value = val; };
+        v('cfg_kstrMint', config.kstrMint);
+        v('cfg_kinsMint', config.kinsMint);
+        v('cfg_claimIntervalMs', config.claimIntervalMs);
+        v('cfg_minClaimSol', config.minClaimSol);
+        v('cfg_reserveSol', config.reserveSol);
+        v('cfg_buySlippageBps', config.buySlippageBps);
+        v('cfg_priorityFeeSol', config.priorityFeeSol);
+        v('cfg_kinsBuyPct', config.feeSplit && config.feeSplit.kinsBuyPct);
+        v('cfg_kstrBuybackPct', config.feeSplit && config.feeSplit.kstrBuybackPct);
+        document.getElementById('cfg_burnKstr').checked = !!config.burnKstrBuyback;
+      }
+    });
+
+    const byId = (id) => document.getElementById(id);
+    byId('liveToggle').onclick = () => KSTR.api('control/live', { live: !KSTR.getState().live });
+    byId('startBtn').onclick = () => KSTR.api('control/start');
+    byId('stopBtn').onclick = () => KSTR.api('control/stop');
+    byId('cycleBtn').onclick = () => KSTR.api('action/cycle-now');
+    byId('checkBtn').onclick = () => KSTR.api('action/check-fees');
+    byId('claimBtn').onclick = async () => {
+      if (confirm('Claim creator fees now?')) {
+        const r = await KSTR.api('action/claim-now'); if (r.error) alert(r.error);
+      }
+    };
+    byId('streamBtn').onclick = () => window.open('/', 'kstr_stream');
+    byId('saveCfg').onclick = async () => {
+      const num = (id) => Number(byId(id).value);
+      const body = {
+        kstrMint: byId('cfg_kstrMint').value.trim(),
+        kinsMint: byId('cfg_kinsMint').value.trim(),
+        claimIntervalMs: num('cfg_claimIntervalMs'),
+        minClaimSol: num('cfg_minClaimSol'),
+        reserveSol: num('cfg_reserveSol'),
+        buySlippageBps: num('cfg_buySlippageBps'),
+        priorityFeeSol: num('cfg_priorityFeeSol'),
+        burnKstrBuyback: byId('cfg_burnKstr').checked,
+        feeSplit: { kinsBuyPct: num('cfg_kinsBuyPct'), kstrBuybackPct: num('cfg_kstrBuybackPct') },
+      };
+      const r = await KSTR.api('config', body);
+      alert(r.ok ? 'Config saved.' : 'Error: ' + (r.error || 'unknown'));
+    };
+    byId('buyBtn').onclick = async () => {
+      const token = byId('buyToken').value;
+      const sol = Number(byId('buySol').value);
+      if (!confirm(`Buy ${sol} SOL of ${token}?`)) return;
+      const r = await KSTR.api('action/buy-now', { token, sol });
+      if (r.error) alert(r.error);
+    };
+  </script>
+</body>
+</html>
