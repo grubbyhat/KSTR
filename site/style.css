@@ -54,11 +54,12 @@ nav .pill { font-family: var(--pixel); font-size: 9px; color: #1c1404; padding: 
 @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
 
 /* hero */
-.hero { text-align: center; padding: 74px 0 36px; }
+.hero { min-height: calc(100vh - 70px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 0 64px; position: relative; }
+.hero::before { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(ellipse 66% 56% at 50% 42%, rgba(5, 6, 10, 0.74), transparent 72%); }
 .hero img.coin { width: 136px; height: 136px; border-radius: 28px; image-rendering: auto; box-shadow: 0 18px 46px rgba(0, 0, 0, 0.6); }
-.hero h1 { font-family: var(--pixel); font-size: 42px; margin: 22px 0 12px; color: var(--white); text-shadow: 4px 4px 0 #000, 0 0 26px rgba(255, 198, 86, 0.35); letter-spacing: 1px; }
-.hero p.tag { font-size: 21px; font-weight: 800; margin: 0 0 10px; color: var(--gold); }
-.hero p.sub { font-size: 16px; color: var(--muted); max-width: 640px; margin: 0 auto 28px; line-height: 1.65; }
+.hero h1 { font-family: var(--pixel); font-size: clamp(40px, 7vw, 64px); margin: 0 0 16px; color: var(--white); text-shadow: 4px 4px 0 #000, 0 0 26px rgba(255, 198, 86, 0.35); letter-spacing: 1px; }
+.hero p.tag { font-size: clamp(19px, 2.4vw, 26px); font-weight: 800; margin: 0 0 14px; color: var(--gold); text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7); }
+.hero p.sub { font-size: 17px; color: #f4ecdd; max-width: 660px; margin: 0 auto 30px; line-height: 1.7; text-shadow: 0 1px 10px rgba(0, 0, 0, 0.8); }
 .cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 .btn {
   font-family: var(--pixel); font-size: 12px; color: #1c1404;
@@ -154,32 +155,34 @@ footer a { margin: 0 10px; }
 .ca-line { font-size: 13px; color: var(--muted); }
 .ca-foot { margin-left: 6px; }
 
-/* on-load entrance (CSS-only so it is robust + no-JS safe) + hover polish */
-.reveal { animation: rise .6s ease both; }
-.stats .stat:nth-child(2) { animation-delay: .06s; }
-.stats .stat:nth-child(3) { animation-delay: .12s; }
-.stats .stat:nth-child(4) { animation-delay: .18s; }
-.stats .stat:nth-child(5) { animation-delay: .24s; }
-.steps .step:nth-child(2) { animation-delay: .08s; }
-.steps .step:nth-child(3) { animation-delay: .16s; }
-.steps .step:nth-child(4) { animation-delay: .24s; }
-.faq .qa:nth-child(2) { animation-delay: .06s; }
-.faq .qa:nth-child(3) { animation-delay: .12s; }
-.faq .qa:nth-child(4) { animation-delay: .18s; }
+/* hover polish */
 .stat, .step, .qa { transition: transform .3s ease, box-shadow .2s ease, border-color .2s ease; }
 .stat:hover, .step:hover, .qa:hover { transform: translateY(-4px); border-color: var(--gold); box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5); }
 .node { transition: transform .16s ease, border-color .16s ease; }
 .node:hover { transform: translateY(-3px); }
 
+/* scroll-down hint in the hero */
+.scrolldown { position: absolute; bottom: 22px; left: 50%; color: var(--gold); font-size: 24px; text-decoration: none; opacity: .75; animation: bob 1.8s ease-in-out infinite; }
+@keyframes bob { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 9px); } }
+
+/* scroll progress bar */
+#progress { position: fixed; inset: 0 0 auto 0; height: 3px; transform: scaleX(0); transform-origin: 0 50%; background: linear-gradient(90deg, var(--gold), var(--orange)); z-index: 60; }
+
+/* scroll-driven reveal (pure CSS scroll timelines). If unsupported, content just shows. */
+@keyframes revealIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
+@keyframes growbar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@supports (animation-timeline: view()) {
+  .reveal { opacity: 0; animation: revealIn linear both; animation-timeline: view(); animation-range: entry 4% cover 26%; }
+  #progress { animation: growbar linear both; animation-timeline: scroll(root); }
+}
+
 /* hero entrance + slow title glow */
 @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 @keyframes glow { 0%, 100% { text-shadow: 4px 4px 0 #000, 0 0 22px rgba(255, 198, 86, 0.30); } 50% { text-shadow: 4px 4px 0 #000, 0 0 36px rgba(255, 198, 86, 0.6); } }
-.hero h1 { animation: rise .7s ease both, glow 3.6s ease-in-out 0.9s infinite; }
-.hero p.tag { animation: rise .7s ease .12s both; }
-.hero p.sub { animation: rise .7s ease .22s both; }
-.hero .cta { animation: rise .7s ease .32s both; }
+.hero h1 { animation: glow 3.6s ease-in-out infinite; }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal { animation: none; }
+  .reveal { animation: none; opacity: 1; }
+  #progress, .scrolldown { animation: none; }
   .hero h1, .hero p.tag, .hero p.sub, .hero .cta { animation: none; }
 }
