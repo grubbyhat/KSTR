@@ -18,6 +18,7 @@
         <a href="#hermes">Hermes agent</a>
         <a href="#live">Live</a>
         <a href="#faq">FAQ</a>
+        <button class="ca" id="caChip" type="button" title="Copy contract address">CA <span id="caText">soon</span></button>
         <span class="pill"><span class="live-dot"></span><span id="navLive">LIVE</span></span>
       </div>
     </div>
@@ -42,27 +43,27 @@
     <!-- live stats -->
     <section id="live" style="padding-top:8px">
       <div class="stats">
-        <div class="stat"><div class="k">Fees claimed</div><div class="v"><span id="feesSol">0.000</span></div><div class="s" id="feesUsd">SOL · $0.00</div></div>
-        <div class="stat"><div class="k">$KINS bought</div><div class="v coin"><span id="kinsAmt">0</span></div><div class="s" id="kinsUsd">$0.00</div></div>
-        <div class="stat"><div class="k">$KSTR marketcap</div><div class="v"><span id="kstrMcap">$0</span></div><div class="s" id="kstrPrice">&nbsp;</div></div>
-        <div class="stat"><div class="k">Gold acquired</div><div class="v coin"><span id="goldEq">0.00</span></div><div class="s" id="goldEqUsd">$0.00</div></div>
-        <div class="stat"><div class="k">Gold spot</div><div class="v">$<span id="goldSpot">0.000</span></div><div class="s">via kintaragold.xyz</div></div>
+        <div class="stat reveal"><div class="k">Fees claimed</div><div class="v"><span id="feesSol">0.000</span></div><div class="s" id="feesUsd">SOL · $0.00</div></div>
+        <div class="stat reveal"><div class="k">$KINS bought</div><div class="v coin"><span id="kinsAmt">0</span></div><div class="s" id="kinsUsd">$0.00</div></div>
+        <div class="stat reveal"><div class="k">$KSTR marketcap</div><div class="v"><span id="kstrMcap">$0</span></div><div class="s" id="kstrPrice">&nbsp;</div></div>
+        <div class="stat reveal"><div class="k">Gold acquired</div><div class="v coin"><span id="goldEq">0.00</span></div><div class="s" id="goldEqUsd">$0.00</div></div>
+        <div class="stat reveal"><div class="k">Gold spot</div><div class="v">$<span id="goldSpot">0.000</span></div><div class="s">via kintaragold.xyz</div></div>
       </div>
       <div class="updated" id="updated">connecting to engine…</div>
     </section>
 
     <!-- how it works -->
     <section id="how">
-      <h2 class="sec">How it works</h2>
-      <p class="lead">KSTR runs as a closed loop. No manual treasury, no promises, just a process that repeats every 30 seconds.</p>
+      <h2 class="sec reveal">How it works</h2>
+      <p class="lead reveal">KSTR runs as a closed loop. No manual treasury, no promises, just a process that repeats every 30 seconds.</p>
       <div class="steps">
-        <div class="step"><div class="num">01</div><h3>Claim fees</h3><p>Every 30 seconds the engine claims $KSTR's pump.fun creator fees straight to the treasury wallet.</p></div>
-        <div class="step"><div class="num">02</div><h3>Split 75 / 25</h3><p>Each claim is allocated automatically: <b>75%</b> buys <b style="color:var(--gold)">$KINS</b>, <b>25%</b> buys back and supports <b>$KSTR</b>.</p></div>
-        <div class="step"><div class="num">03</div><h3>Convert to gold</h3><p>A <b>Hermes agent</b> continuously converts the acquired $KINS into Kintara in-game <b style="color:var(--gold)">gold</b> through the marketplace.</p></div>
-        <div class="step"><div class="num">04</div><h3>Reflect live</h3><p>Every claim, buy and conversion is shown here in real time and linked to its on-chain transaction.</p></div>
+        <div class="step reveal"><div class="num">01</div><h3>Claim fees</h3><p>Every 30 seconds the engine claims $KSTR's pump.fun creator fees straight to the treasury wallet.</p></div>
+        <div class="step reveal"><div class="num">02</div><h3>Split 75 / 25</h3><p>Each claim is allocated automatically: <b>75%</b> buys <b style="color:var(--gold)">$KINS</b>, <b>25%</b> buys back and supports <b>$KSTR</b>.</p></div>
+        <div class="step reveal"><div class="num">03</div><h3>Convert to gold</h3><p>A <b>Hermes agent</b> continuously converts the acquired $KINS into Kintara in-game <b style="color:var(--gold)">gold</b> through the marketplace.</p></div>
+        <div class="step reveal"><div class="num">04</div><h3>Reflect live</h3><p>Every claim, buy and conversion is shown here in real time and linked to its on-chain transaction.</p></div>
       </div>
 
-      <div class="flow">
+      <div class="flow reveal">
         <div class="node"><b>$KSTR fees</b><span>claimed / 30s</span></div>
         <div class="arrow">&rarr;</div>
         <div class="node k"><b>75% &rarr; $KINS</b><span>via PumpSwap</span></div>
@@ -75,7 +76,7 @@
 
     <!-- hermes -->
     <section id="hermes">
-      <div class="hermes">
+      <div class="hermes reveal">
         <div>
           <h2>The Hermes agent</h2>
           <p>
@@ -99,8 +100,8 @@
 
     <!-- about -->
     <section id="about">
-      <h2 class="sec">Why gold</h2>
-      <p class="lead">
+      <h2 class="sec reveal">Why gold</h2>
+      <p class="lead reveal">
         Kintara is a browser-based MMO on Solana where gold is the lifeblood of the in-game economy.
         KSTR channels its trading fees into that economy, buying $KINS, supporting $KSTR, and stacking
         real Kintara gold. The bigger KSTR trades, the more gold the engine pulls in.
@@ -109,18 +110,19 @@
 
     <!-- faq -->
     <section id="faq">
-      <h2 class="sec">FAQ</h2>
+      <h2 class="sec reveal">FAQ</h2>
       <div class="faq">
-        <div class="qa"><b>Where do the fees come from?</b><p>$KSTR's own pump.fun creator fees, generated by trading activity and claimed by the engine every 30 seconds.</p></div>
-        <div class="qa"><b>What is the 75 / 25 split?</b><p>Of every claim, 75% is used to buy $KINS and 25% to buy back $KSTR. Both are routed through pump.fun's own markets.</p></div>
-        <div class="qa"><b>How does gold get bought?</b><p>A Hermes agent operates the Kintara marketplace and converts the engine's $KINS into in-game gold continuously.</p></div>
-        <div class="qa"><b>Is this live?</b><p>Yes. The numbers above update straight from the engine, and the gold spot price is pulled live from kintaragold.xyz.</p></div>
+        <div class="qa reveal"><b>Where do the fees come from?</b><p>$KSTR's own pump.fun creator fees, generated by trading activity and claimed by the engine every 30 seconds.</p></div>
+        <div class="qa reveal"><b>What is the 75 / 25 split?</b><p>Of every claim, 75% is used to buy $KINS and 25% to buy back $KSTR. Both are routed through pump.fun's own markets.</p></div>
+        <div class="qa reveal"><b>How does gold get bought?</b><p>A Hermes agent operates the Kintara marketplace and converts the engine's $KINS into in-game gold continuously.</p></div>
+        <div class="qa reveal"><b>Is this live?</b><p>Yes. The numbers above update straight from the engine, and the gold spot price is pulled live from kintaragold.xyz.</p></div>
       </div>
     </section>
   </div>
 
   <footer>
-    <div>
+    <div class="ca-line">contract <button class="ca ca-foot" id="caChipFoot" type="button" title="Copy contract address"><span id="caTextFoot">soon</span></button></div>
+    <div style="margin-top:14px">
       <a id="lnkX" href="#" target="_blank">X / Twitter</a>
       <a id="lnkGame" href="#" target="_blank">Play Kintara</a>
       <a id="lnkGold" href="#" target="_blank">Kintara Gold</a>
