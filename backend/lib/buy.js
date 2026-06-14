@@ -1,5 +1,5 @@
 /**
- * Unified pump.fun buyer — no Jupiter.
+ * Unified pump.fun buyer - no Jupiter.
  *
  * Auto-routes by token state:
  *   • bonding curve (not graduated)  -> @pump-fun/pump-sdk  buyInstructions

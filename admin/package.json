@@ -2,7 +2,7 @@
   "name": "kstr-admin",
   "version": "0.1.0",
   "private": true,
-  "description": "KSTR admin — runs the backend in-process and shows the control panel + a fullscreen stream view.",
+  "description": "KSTR admin - runs the backend in-process and shows the control panel + a fullscreen stream view.",
   "main": "main.js",
   "scripts": {
     "start": "electron ."

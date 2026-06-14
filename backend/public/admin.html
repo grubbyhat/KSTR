@@ -15,7 +15,7 @@
       <div class="spacer"></div>
       <div class="badge" id="liveBadge">○ SIM</div>
       <div class="badge"><span class="dot" id="connDot"></span><span id="connText">connecting…</span></div>
-      <div class="badge">👛 <span id="walletAddr">—</span></div>
+      <div class="badge">👛 <span id="walletAddr">-</span></div>
     </div>
 
     <!-- controls -->
@@ -31,7 +31,7 @@
         <button class="btn gray" id="streamBtn">OPEN STREAM VIEW ↗</button>
       </div>
       <p class="sub" style="margin-top:14px">
-        Status: <b id="runState">IDLE</b> · Pending fees: <b id="pendingFees">—</b> · Wallet SOL: <b id="walletSol">—</b>
+        Status: <b id="runState">IDLE</b> · Pending fees: <b id="pendingFees">-</b> · Wallet SOL: <b id="walletSol">-</b>
       </p>
     </div>
 
@@ -75,7 +75,7 @@
     <div class="grid">
       <div class="card"><div class="label">💰 Fees Claimed</div><div class="value"><span id="feesSol">0.000</span><span class="unit">SOL</span></div><div class="sub" id="feesUsd">$0.00</div></div>
       <div class="card"><div class="label">🟠 KINS Bought</div><div class="value coin"><span id="kinsAmt">0</span></div><div class="sub" id="kinsUsd">$0.00</div></div>
-      <div class="card"><div class="label">📈 KSTR Marketcap</div><div class="value"><span id="kstrMcap">$0</span></div><div class="sub"><span id="kstrPrice">—</span></div></div>
+      <div class="card"><div class="label">📈 KSTR Marketcap</div><div class="value"><span id="kstrMcap">$0</span></div><div class="sub"><span id="kstrPrice">-</span></div></div>
       <div class="card"><div class="label">🪙 Gold Acquired</div><div class="value coin"><span id="goldEq">0.00</span></div><div class="sub" id="goldEqUsd">$0.00</div></div>
       <div class="card span-8"><div class="label">🪙 Gold Spot <span id="goldUpdated"></span></div><div class="value sm">$<span id="goldSpot">0.000</span></div><canvas id="goldChart"></canvas></div>
       <div class="card span-4">
@@ -96,8 +96,8 @@
     KSTR.init((state, config) => {
       // status line
       const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
-      set('pendingFees', (state.fees && state.fees.pendingSol != null) ? state.fees.pendingSol.toFixed(4) + ' SOL' : '—');
-      set('walletSol', (state.balances && state.balances.sol != null) ? state.balances.sol.toFixed(4) + ' SOL' : '—');
+      set('pendingFees', (state.fees && state.fees.pendingSol != null) ? state.fees.pendingSol.toFixed(4) + ' SOL' : '-');
+      set('walletSol', (state.balances && state.balances.sol != null) ? state.balances.sol.toFixed(4) + ' SOL' : '-');
       const lt = document.getElementById('liveToggle');
       lt.textContent = state.live ? 'GO SIM (live ON)' : 'GO LIVE (sim)';
       lt.className = 'btn ' + (state.live ? 'danger' : '');

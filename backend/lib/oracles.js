@@ -1,5 +1,5 @@
 /**
- * Price/market oracles. All read-only — these run even with no wallet.
+ * Price/market oracles. All read-only - these run even with no wallet.
  *
  *   • gold spot   -> kintaragold.xyz embedded `spotPriceUsd` (polled)
  *   • KINS price  -> Dexscreener (also yields SOL/USD)
@@ -77,7 +77,7 @@ async function pollDex(cfg) {
         patch('prices', { kstrPriceUsd: parseFloat(kstr.priceUsd) || 0 });
       }
     } catch {
-      /* KSTR may not exist yet — silent */
+      /* KSTR may not exist yet - silent */
     }
   }
 }

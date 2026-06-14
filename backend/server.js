@@ -1,5 +1,5 @@
 /**
- * KSTR dashboard backend — the brain.
+ * KSTR dashboard backend - the brain.
  *
  * - serves the public dashboard + admin panel from /public
  * - exposes a JSON API + a websocket for live state
@@ -48,11 +48,11 @@ async function runCycle({ manual = false } = {}) {
   busy = true;
   try {
     if (!config.kstrMint) {
-      pushLog('warn', 'KSTR mint not set — nothing to do');
+      pushLog('warn', 'KSTR mint not set - nothing to do');
       return;
     }
     if (!conn.isWalletReady()) {
-      pushLog('warn', 'wallet/RPC not configured — read-only');
+      pushLog('warn', 'wallet/RPC not configured - read-only');
       return;
     }
 
@@ -252,7 +252,7 @@ const server = http.createServer(async (req, res) => {
       patch('live', live);
       config.live = live;
       saveConfig();
-      pushLog(live ? 'warn' : 'info', live ? 'LIVE mode ON — real transactions enabled' : 'LIVE mode OFF — simulation only');
+      pushLog(live ? 'warn' : 'info', live ? 'LIVE mode ON - real transactions enabled' : 'LIVE mode OFF - simulation only');
       return sendJson(res, 200, { ok: true, live });
     }
 

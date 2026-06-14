@@ -2,7 +2,7 @@
   "name": "kstr-backend",
   "version": "0.1.0",
   "private": true,
-  "description": "KSTR / Kintara dashboard backend — claims creator fees, buys KINS, tracks gold equivalent, serves a live dashboard.",
+  "description": "KSTR / Kintara dashboard backend - claims creator fees, buys KINS, tracks gold equivalent, serves a live dashboard.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

@@ -1,4 +1,4 @@
-/* KSTR dashboard client — connects to the backend websocket and renders
+/* KSTR dashboard client - connects to the backend websocket and renders
    live state. Shared by the public dashboard and the admin panel. */
 
 const KSTR = (() => {
@@ -19,7 +19,7 @@ const KSTR = (() => {
     return '$' + fmt(n, 2);
   };
   const fmtInt = (n) => Math.round(Number(n) || 0).toLocaleString('en-US');
-  const short = (a) => (a ? a.slice(0, 4) + '…' + a.slice(-4) : '—');
+  const short = (a) => (a ? a.slice(0, 4) + '…' + a.slice(-4) : '-');
   const timeStr = (ts) => new Date(ts).toLocaleTimeString('en-GB');
 
   // ── render ──
@@ -53,7 +53,7 @@ const KSTR = (() => {
 
     // KSTR marketcap
     setText('kstrMcap', fmtUsd(mk.kstrMcapUsd));
-    setText('kstrPrice', pr.kstrPriceUsd ? '$' + Number(pr.kstrPriceUsd).toPrecision(4) : '—');
+    setText('kstrPrice', pr.kstrPriceUsd ? '$' + Number(pr.kstrPriceUsd).toPrecision(4) : '-');
 
     // gold spot + equivalent ($ sign is in the HTML)
     setText('goldSpot', fmt(pr.goldSpotUsd, 3));
@@ -63,8 +63,8 @@ const KSTR = (() => {
 
     // KINS mcap (context)
     setText('kinsMcap', fmtUsd(mk.kinsMcapUsd));
-    setText('kinsPrice', pr.kinsUsd ? '$' + Number(pr.kinsUsd).toPrecision(4) : '—');
-    setText('solPrice', pr.solUsd ? '$' + fmt(pr.solUsd, 2) : '—');
+    setText('kinsPrice', pr.kinsUsd ? '$' + Number(pr.kinsUsd).toPrecision(4) : '-');
+    setText('solPrice', pr.solUsd ? '$' + fmt(pr.solUsd, 2) : '-');
 
     // split bar
     const cfg = config || {};

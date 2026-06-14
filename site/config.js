@@ -1,4 +1,4 @@
-/* Public site config — edit this when you deploy.
+/* Public site config - edit this when you deploy.
  *
  * KSTR_API: where the live data comes from.
  *   • ""  (empty)  -> same origin (works when the backend serves this site locally)
@@ -11,7 +11,7 @@
 window.KSTR_API = '';
 
 window.KSTR_LINKS = {
-  pumpfun: '', // KSTR pump.fun page (fill at launch) — Buy button hides until set
+  pumpfun: '', // KSTR pump.fun page (fill at launch) - Buy button hides until set
   x: 'https://x.com/PlayKintara',
   game: 'https://kintara.gg',
   gold: 'https://kintaragold.xyz',

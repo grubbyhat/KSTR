@@ -4,7 +4,7 @@
  * On-chain actions (claim, buy) need both RPC_URL and WALLET_PRIVATE_KEY.
  * The read-only side of the dashboard (KINS price, gold spot, even KSTR
  * marketcap via a public RPC) can run with neither, so this module never
- * throws on load — callers check `isWalletReady()` before signing anything.
+ * throws on load - callers check `isWalletReady()` before signing anything.
  */
 const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '..', '.env') });

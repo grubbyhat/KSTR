@@ -1,4 +1,4 @@
-/* KSTR public site — polls the engine's /api/state and reflects it live.
+/* KSTR public site: polls the engine's /api/state and reflects it live.
    Polling (not websocket) keeps it simple and CORS-friendly when hosted
    on a different origin than the engine. */
 (function () {
@@ -16,7 +16,6 @@
     return '$' + fmt(n, 2);
   };
 
-  // static links
   function applyLinks() {
     if (LINKS.x) $('lnkX').href = LINKS.x;
     if (LINKS.game) $('lnkGame').href = LINKS.game;
@@ -31,11 +30,10 @@
     setText('kinsAmt', fmtInt(t.kinsBoughtUi));
     setText('kinsUsd', fmtUsd((t.kinsBoughtUi || 0) * (pr.kinsUsd || 0)));
     setText('kstrMcap', fmtUsd(mk.kstrMcapUsd));
-    setText('kstrPrice', pr.kstrPriceUsd ? '$' + Number(pr.kstrPriceUsd).toPrecision(4) : '—');
+    setText('kstrPrice', pr.kstrPriceUsd ? '$' + Number(pr.kstrPriceUsd).toPrecision(4) : ' ');
     setText('goldEq', fmt(t.goldEquivalent, 2));
     setText('goldEqUsd', fmtUsd((t.goldEquivalent || 0) * (pr.goldSpotUsd || 0)));
     setText('goldSpot', fmt(pr.goldSpotUsd, 3));
-    setText('navLive', s.live ? 'LIVE' : 'LIVE');
     setText('updated', 'updated ' + new Date().toLocaleTimeString('en-GB'));
   }
 
@@ -44,7 +42,7 @@
       const res = await fetch(API + '/api/state', { cache: 'no-store' });
       render(await res.json());
     } catch {
-      setText('updated', 'engine offline — numbers will resume when it reconnects');
+      setText('updated', 'engine offline, numbers will resume when it reconnects');
     }
   }
 

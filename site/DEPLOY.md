@@ -12,7 +12,7 @@ Easiest: a tunnel from the machine running the engine.
 cloudflared tunnel --url http://localhost:8790
 ```
 Copy the `https://xxxx.trycloudflare.com` URL it prints. (ngrok works too:
-`ngrok http 8790`.) The wallet/keys stay on your machine — the tunnel only exposes
+`ngrok http 8790`.) The wallet/keys stay on your machine - the tunnel only exposes
 the read-only HTTP API.
 
 ## 2. Point the site at it
@@ -28,7 +28,7 @@ Drag-and-drop `kstr/site/` to any static host:
 - **Vercel**: `vercel deploy` from this folder (it's static, no build step).
 - **GitHub Pages**: push the folder to a repo, enable Pages.
 
-That's it — the deployed site polls your tunnel every 5s and stays in sync.
+That's it - the deployed site polls your tunnel every 5s and stays in sync.
 
 ## Notes
 - Served locally too: the backend mounts this folder at `http://localhost:8790/site/`.

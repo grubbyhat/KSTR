@@ -50,7 +50,7 @@ function openStream() {
   streamWin = new BrowserWindow({
     width: 1280,
     height: 720,
-    title: 'KSTR — Stream',
+    title: 'KSTR - Stream',
     backgroundColor: '#4f9fdc',
     autoHideMenuBar: true,
     webPreferences: { contextIsolation: true },
@@ -91,7 +91,7 @@ app.whenReady().then(() => {
 
 app.on('window-all-closed', () => app.quit());
 
-// The admin "OPEN STREAM VIEW" button calls window.open() — route it to the stream window.
+// The admin "OPEN STREAM VIEW" button calls window.open() - route it to the stream window.
 app.on('web-contents-created', (_e, contents) => {
   contents.setWindowOpenHandler(() => {
     openStream();
